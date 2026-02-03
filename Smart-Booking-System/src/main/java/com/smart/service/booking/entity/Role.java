@@ -1,6 +1,6 @@
 package com.smart.service.booking.entity;
 
-import com.smart.service.booking.enums.RoleName;
+import com.smart.service.booking.enums.RoleType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,9 +28,9 @@ public class Role {
     private Long id;
     
     
-
     @Enumerated(EnumType.STRING)
-    @Column(unique = true)
-    private RoleName roleType;
+    @Column(nullable = false, unique = true)
+    private RoleType roleType;
+
 }
 

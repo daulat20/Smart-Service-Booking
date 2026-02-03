@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.smart.service.booking.dto.RoleDto;
 import com.smart.service.booking.entity.Role;
-import com.smart.service.booking.enums.RoleName;
 import com.smart.service.booking.repository.RoleRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,7 @@ public class RoleService {
     // Create or Save Role
     public Role saveRole(RoleDto roleDto) {
         Role role = new Role();
-//        role.setRoleType(RoleName.valueOf(roleDto.getRoleType())); // convert String to enum
+        role.setRoleType(roleDto.getRoleType());
         return roleRepository.save(role);
     }
 
