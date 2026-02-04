@@ -14,7 +14,7 @@ public class ServiceController {
 
     private final ServiceOfferingService serviceOfferingService;
 
-    @PostMapping
+    @PostMapping("/AddService")
     public ServiceOffering addService(@RequestBody ServiceOffering serviceOffering) {
         return serviceOfferingService.addService(serviceOffering);
     }

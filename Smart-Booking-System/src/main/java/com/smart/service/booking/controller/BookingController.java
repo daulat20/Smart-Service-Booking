@@ -16,12 +16,12 @@ public class BookingController {
 
     private final BookingService bookingService;
 
-    @PostMapping
+    @PostMapping("/uploadbooking")
     public Booking createBooking(@RequestBody BookingRequest request) {
         return bookingService.createBooking(request);
     }
 
-    @GetMapping
+    @GetMapping("/getbooking")
     public List<Booking> getAllBookings() {
         return bookingService.getAllBookings();
     }

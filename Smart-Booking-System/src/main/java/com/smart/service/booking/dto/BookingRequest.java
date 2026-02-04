@@ -10,12 +10,17 @@ import lombok.Data;
 @Data
 public class BookingRequest {
 
-	 private Long bookingId;
-	    private String userName;
-	    private String serviceName;
-	    private BookingStatus status;
+//	  private Long bookingId;
 	    private LocalDateTime bookingDate;
-	    private Long userId;     
+	    private BookingStatus status;
+
+	    private Long userId;
+	    private String userName;
+
 	    private Long serviceId;
+	    private String serviceName;
+
+	    private Long paymentId;
+	    private String paymentStatus;
 }
 
