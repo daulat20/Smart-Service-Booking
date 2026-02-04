@@ -1,6 +1,8 @@
 package com.smart.service.booking.controller;
 
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,8 +33,15 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public AuthResponse login(@RequestBody LoginRequest request) {
-        return authService.login(request);
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    	try {
+    		
+    		AuthResponse response= authService.login(request);
+    		return ResponseEntity.status(HttpStatus.OK).body(response);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Email and password");	
+			}
+        
     }
 }
 

@@ -47,10 +47,9 @@ public class AuthService {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("Invalid email"));
 
-//        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-//            throw new RuntimeException("Invalid password");
-//        }
-
+        if (!request.getPassword().equals(user.getPassword())) {
+            throw new RuntimeException("Invalid password");
+        }
         return new AuthResponse("Login successful", user.getEmail());
     }
 }
