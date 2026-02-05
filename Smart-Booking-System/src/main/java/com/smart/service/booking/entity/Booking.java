@@ -2,6 +2,8 @@ package com.smart.service.booking.entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.smart.service.booking.enums.BookingStatus;
 
 import jakarta.persistence.CascadeType;
@@ -39,10 +41,12 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties("bookings")
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "service_id")
+    @JsonBackReference
     private ServiceOffering service;
 
     @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)

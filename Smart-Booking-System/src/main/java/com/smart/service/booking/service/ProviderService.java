@@ -1,12 +1,15 @@
 package com.smart.service.booking.service;
 
 
-import com.smart.service.booking.entity.Provider;
-import com.smart.service.booking.repository.ProviderRepository;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.smart.service.booking.dto.ProviderResponseDTO;
+import com.smart.service.booking.entity.Provider;
+import com.smart.service.booking.repository.ProviderRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -14,9 +17,17 @@ public class ProviderService {
 
     private final ProviderRepository providerRepository;
 
-    public Provider saveProvider(Provider provider) {
-        return providerRepository.save(provider);
-    }
+    public ProviderResponseDTO saveProvider(Provider provider) {
+    	 Provider saved = providerRepository.save(provider);
+
+    	    ProviderResponseDTO dto = new ProviderResponseDTO();
+    	    dto.setId(saved.getId());
+    	    dto.setCompanyName(saved.getCompanyName());
+    	    dto.setDescription(saved.getDescription());
+
+    	    dto.setUserId(saved.getUser().getId());
+
+    	    return dto;    }
 
     public List<Provider> getAllProviders() {
         return providerRepository.findAll();

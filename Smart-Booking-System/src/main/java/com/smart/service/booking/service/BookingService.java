@@ -26,20 +26,30 @@ public class BookingService {
 
     public Booking createBooking(BookingRequest request) {
 
-    	User user = userRepository.findById(request.getUserId())
+        User user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         ServiceOffering service = serviceRepository.findById(request.getServiceId())
                 .orElseThrow(() -> new RuntimeException("Service not found"));
+
         Booking booking = Booking.builder()
                 .user(user)
                 .service(service)
-                .bookingDate(LocalDateTime.now()) // ✅ FIX
-                .status(BookingStatus.PENDING)
+                .bookingDate(
+                    request.getBookingDate() != null 
+                        ? request.getBookingDate() 
+                        : LocalDateTime.now()
+                )
+                .status(
+                    request.getStatus() != null 
+                        ? request.getStatus() 
+                        : BookingStatus.PENDING
+                )
                 .build();
 
         return bookingRepository.save(booking);
     }
+
 
     public List<Booking> getAllBookings() {
         return bookingRepository.findAll();

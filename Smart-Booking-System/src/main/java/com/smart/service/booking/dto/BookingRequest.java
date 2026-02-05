@@ -20,7 +20,7 @@ public class BookingRequest {
 	    private Long serviceId;
 	    private String serviceName;
 
-	    private Long paymentId;
-	    private String paymentStatus;
+//	    private Long paymentId;
+//	    private String paymentStatus;
 }
 
